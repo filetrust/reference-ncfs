@@ -2,3 +2,5 @@
 obj/
 bin/
 *.suo
+gh-page/package-lock.json
+node_modules/
