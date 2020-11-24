@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Threading;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ReferenceNcfs.Api.Configuration;
@@ -9,7 +8,7 @@ using ReferenceNcfs.Api.Models;
 namespace ReferenceNcfs.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class DecideController : ControllerBase
     {
         private readonly ILogger<DecideController> _logger;
@@ -24,9 +23,11 @@ namespace ReferenceNcfs.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult DecideAction([Required]NcfsRequestModel ncfsRequestModel, CancellationToken cancellationToken)
+        public IActionResult DecideAction([Required]NcfsRequestModel ncfsRequestModel)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            _logger.LogInformation("Reference decision request triggered");
 
             Response.Headers.Add("ncfs-decision", _ncfsPolicy.NcfsDecision.ToString());
             Response.Headers.Add("ncfs-status-message", $"Reference NCFS policy decision was '{_ncfsPolicy.NcfsDecision}'");
