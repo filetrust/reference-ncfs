@@ -29,16 +29,12 @@ jobs:
       run: |
         sudo wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/3.4.1/yq_linux_amd64
         sudo chmod +x /usr/local/bin/yq
-
-  merge-to-main:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@master
-      - name: Merge to main branch 🔃
-        uses: devmasx/merge-branch@v1.1.0
-        with:
-          type: now
-          target_branch: main
-        env:
-          GITHUB_TOKEN: ${{secrets.TOKEN_GITHUB}}  
+    - name: Checkout 🛎️
+      uses: actions/checkout@master
+    - name: Merge to main branch 🔃
+      uses: devmasx/merge-branch@v1.1.0
+      with:
+        type: now
+        target_branch: main
+      env:
+        GITHUB_TOKEN: ${{secrets.TOKEN_GITHUB}}  
