@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -44,15 +45,9 @@ namespace ReferenceNcfs.Api
                     });
             });
 
-            services.TryAddTransient<IConfigurationParser, EnvironmentVariableParser>();
-            services.TryAddTransient<IDictionary<string, IConfigurationItemValidator>>(_ => new Dictionary<string, IConfigurationItemValidator>
+            services.TryAddTransient<INcfsPolicy>(serviceProvider => new NcfsPolicy
             {
-                {nameof(INcfsPolicy.NcfsDecision), new StringValidator(1)},
-            });
-            services.TryAddTransient<INcfsPolicy>(serviceProvider =>
-            {
-                var configuration = serviceProvider.GetRequiredService<IConfigurationParser>();
-                return configuration.Parse<NcfsPolicy>();
+                NcfsDecision = (NcfsDecision) Enum.Parse(typeof(NcfsDecision), Configuration["NcfsDecision"])
             });
 
         }
