@@ -1,11 +1,14 @@
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using ReferenceNcfs.Api.Configuration;
+using ReferenceNcfs.Api.Configuration.Validation;
 using ReferenceNcfs.Api.Controllers;
 
 namespace ReferenceNcfs.Api
@@ -41,7 +44,19 @@ namespace ReferenceNcfs.Api
                     });
             });
 
-            services.AddTransient<INcfsPolicy, NcfsPolicy>();
+            services.TryAddTransient<INcfsPolicy, NcfsPolicy>();
+
+            services.TryAddTransient<IConfigurationParser, EnvironmentVariableParser>();
+            services.TryAddTransient<IDictionary<string, IConfigurationItemValidator>>(_ => new Dictionary<string, IConfigurationItemValidator>
+            {
+                {nameof(INcfsPolicy.NcfsDecision), new StringValidator(1)},
+            });
+            services.TryAddTransient<INcfsPolicy>(serviceProvider =>
+            {
+                var configuration = serviceProvider.GetRequiredService<IConfigurationParser>();
+                return configuration.Parse<NcfsPolicy>();
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
