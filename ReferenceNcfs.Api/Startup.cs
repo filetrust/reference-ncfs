@@ -44,8 +44,6 @@ namespace ReferenceNcfs.Api
                     });
             });
 
-            services.TryAddTransient<INcfsPolicy, NcfsPolicy>();
-
             services.TryAddTransient<IConfigurationParser, EnvironmentVariableParser>();
             services.TryAddTransient<IDictionary<string, IConfigurationItemValidator>>(_ => new Dictionary<string, IConfigurationItemValidator>
             {
