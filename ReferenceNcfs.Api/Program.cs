@@ -18,7 +18,7 @@ namespace ReferenceNcfs.Api
                 {
                     c.AddJsonFile(ConfigMapFileProvider.FromRelativePath("config"),
                         "appsettings.json",
-                        optional: true,
+                        optional: false,
                         reloadOnChange: true);
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
