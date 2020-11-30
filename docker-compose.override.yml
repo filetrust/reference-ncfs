@@ -7,8 +7,7 @@ services:
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - NcfsDecision=Replace
     ports:
-      - "32792:80"
-      - "32793:443"
+      - "5002:80"
+      - "5003:443"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
