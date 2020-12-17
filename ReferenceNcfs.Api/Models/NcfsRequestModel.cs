@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace ReferenceNcfs.Api.Models
@@ -8,8 +10,40 @@ namespace ReferenceNcfs.Api.Models
         [Required]
         public string Base64Body { get; set; }
 
-        [JsonConverter(typeof(JsonStringEnumConverter))]
-        public FileType DetectedFiletype { get; set; }
+        [Required]
+        [JsonConverter(typeof(FileTypeConverter))]
+        public FileType? DetectedFiletype { get; set; }
+    }
+
+    public class FileTypeConverter : JsonConverter<FileType?>
+    {
+        public override bool CanConvert(Type typeToConvert)
+        {
+            return typeof(FileType?).IsAssignableFrom(typeToConvert);
+            //return true;
+        }
+
+        public override FileType? Read(ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options)
+        {
+            if (reader.TokenType == JsonTokenType.String)
+            {
+                var val = reader.GetString();
+                if (string.IsNullOrEmpty(val)) return default;
+                return !Enum.TryParse(typeof(FileType), val, true, out var value) ? default : (FileType?) value;
+            }
+            
+            return (FileType?)reader.GetInt32();
+
+        }
+
+        public override void Write(Utf8JsonWriter writer,
+            FileType? value,
+            JsonSerializerOptions options)
+        {
+            writer.WriteStringValue(value?.ToString());
+        }
     }
 
     public enum FileType
