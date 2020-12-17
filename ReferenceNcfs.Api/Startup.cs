@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -9,11 +9,10 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using ReferenceNcfs.Api.Configuration;
-using ReferenceNcfs.Api.Configuration.Validation;
-using ReferenceNcfs.Api.Controllers;
 
 namespace ReferenceNcfs.Api
 {
+    [ExcludeFromCodeCoverage]
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -47,7 +46,8 @@ namespace ReferenceNcfs.Api
 
             services.TryAddTransient<INcfsPolicy>(serviceProvider => new NcfsPolicy
             {
-                NcfsDecision = (NcfsDecision) Enum.Parse(typeof(NcfsDecision), Configuration["NcfsDecision"])
+                GlasswallBlockedFilesAction = (NcfsOption) Enum.Parse(typeof(NcfsOption), Configuration["GlasswallBlockedFilesAction"]),
+                UnprocessableFileTypeAction = (NcfsOption)Enum.Parse(typeof(NcfsOption), Configuration["UnprocessableFileTypeAction"])
             });
 
         }

@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using ReferenceNcfs.Api.Configuration.ChangeTracking;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ReferenceNcfs.Api
 {
+    [ExcludeFromCodeCoverage]
     public class Program
     {
         public static void Main(string[] args)

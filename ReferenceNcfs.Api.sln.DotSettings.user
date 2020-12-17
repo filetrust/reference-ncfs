@@ -1,0 +1,13 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2725d8a8_002D7a32_002D44b6_002D90fc_002D7896effb0e86/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Tests #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::350B383F-089F-4973-A901-2B863FDC1D0A::.NETCoreApp,Version=v3.1::ReferenceNcfs.Api.Tests.Controllers.DecideControllerTests.Tests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::350B383F-089F-4973-A901-2B863FDC1D0A::.NETCoreApp,Version=v3.1::ReferenceNcfs.Api.Tests.Controllers.DecideAction.WhenDecidingActionToTake.With_FileTypeUnknown_Correct_Response_Is_Returned&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::350B383F-089F-4973-A901-2B863FDC1D0A::.NETCoreApp,Version=v3.1::ReferenceNcfs.Api.Tests.Controllers.DecideAction.WhenDecidingActionToTake.With_FileTypeKnown_Correct_Response_Is_Returned&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c1bd0e5a_002D078a_002D416f_002D8d23_002D24ef89e54016/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Tests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::350B383F-089F-4973-A901-2B863FDC1D0A::.NETCoreApp,Version=v3.1::ReferenceNcfs.Api.Tests.Controllers.DecideControllerTests.Tests&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

@@ -1,9 +1,11 @@
 ﻿namespace ReferenceNcfs.Api.Configuration
 {
-    public enum NcfsDecision
+    public enum NcfsOption
     {
+        NotSet,
         Relay,
-        Replace,
-        Block
+        Block,
+        Refer,
+        Replace
     }
 }

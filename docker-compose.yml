@@ -5,4 +5,4 @@ services:
     image: ${DOCKER_REGISTRY-}referencencfsapi
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./ReferenceNcfs.Api/Dockerfile
