@@ -27,16 +27,38 @@ namespace ReferenceNcfs.Api.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            _logger.LogInformation("Reference decision request triggered");
+            _logger.LogInformation($"Request triggered for file type {ncfsRequestModel.DetectedFiletype}");
 
-            Response.Headers.Add("ncfs-decision", _ncfsPolicy.NcfsDecision.ToString());
-            Response.Headers.Add("ncfs-status-message", $"Reference NCFS policy decision was '{_ncfsPolicy.NcfsDecision}'");
+            var useUnknownFileTypeAction = ncfsRequestModel.DetectedFiletype < FileType.Pdf;
 
-            return Ok(
-                new
-                {
-                    Base64Replacement = ncfsRequestModel.Base64Body
-                });
+            var action = useUnknownFileTypeAction
+                ? _ncfsPolicy.UnprocessableFileTypeAction
+                : _ncfsPolicy.GlasswallBlockedFilesAction;
+
+            var policyUsed = useUnknownFileTypeAction
+                ? nameof(_ncfsPolicy.UnprocessableFileTypeAction)
+                : nameof(_ncfsPolicy.GlasswallBlockedFilesAction);
+
+            Response.Headers.Add("ncfs-decision", action.ToString());
+            Response.Headers.Add("ncfs-status-message", $"Reference NCFS policy decision was '{action}' because '{policyUsed}' was used");
+
+            _logger.LogInformation($"Request finished for file type '{ncfsRequestModel.DetectedFiletype}' with decision to '{action}'. '{policyUsed}' was used");
+
+            if (action == NcfsOption.Replace)
+            {
+                return Ok(
+                    new DecideResponse
+                    {
+                        Base64Replacement = ncfsRequestModel.Base64Body
+                    });
+            }
+
+            return Ok();
         }
+    }
+
+    public class DecideResponse
+    {
+        public string Base64Replacement { get; set; }
     }
 }

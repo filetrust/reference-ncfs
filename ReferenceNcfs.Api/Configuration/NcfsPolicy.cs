@@ -2,6 +2,7 @@
 {
     public class NcfsPolicy : INcfsPolicy
     {
-        public NcfsDecision NcfsDecision { get; set; }
+        public NcfsOption UnprocessableFileTypeAction { get; set; }
+        public NcfsOption GlasswallBlockedFilesAction { get; set; }
     }
 }
