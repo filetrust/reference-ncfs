@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/reference-ncfs/static/css/main.25131c70.chunk.css",
+    "main.js": "/reference-ncfs/static/js/main.bc90178c.chunk.js",
+    "main.js.map": "/reference-ncfs/static/js/main.bc90178c.chunk.js.map",
+    "runtime-main.js": "/reference-ncfs/static/js/runtime-main.fb7cb9e0.js",
+    "runtime-main.js.map": "/reference-ncfs/static/js/runtime-main.fb7cb9e0.js.map",
+    "static/css/2.189a0f4d.chunk.css": "/reference-ncfs/static/css/2.189a0f4d.chunk.css",
+    "static/js/2.359f4c6b.chunk.js": "/reference-ncfs/static/js/2.359f4c6b.chunk.js",
+    "static/js/2.359f4c6b.chunk.js.map": "/reference-ncfs/static/js/2.359f4c6b.chunk.js.map",
+    "index.html": "/reference-ncfs/index.html",
+    "precache-manifest.1d9b0ea470055f83f945b573eedce04c.js": "/reference-ncfs/precache-manifest.1d9b0ea470055f83f945b573eedce04c.js",
+    "service-worker.js": "/reference-ncfs/service-worker.js",
+    "static/css/2.189a0f4d.chunk.css.map": "/reference-ncfs/static/css/2.189a0f4d.chunk.css.map",
+    "static/css/main.25131c70.chunk.css.map": "/reference-ncfs/static/css/main.25131c70.chunk.css.map",
+    "static/js/2.359f4c6b.chunk.js.LICENSE.txt": "/reference-ncfs/static/js/2.359f4c6b.chunk.js.LICENSE.txt",
+    "static/media/api.yaml": "/reference-ncfs/static/media/api.9879b237.yaml",
+    "static/media/App.css": "/reference-ncfs/static/media/roboto-regular-webfont.d96d07c1.woff2",
+    "static/media/logo.svg": "/reference-ncfs/static/media/logo.6c8e5727.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.fb7cb9e0.js",
+    "static/css/2.189a0f4d.chunk.css",
+    "static/js/2.359f4c6b.chunk.js",
+    "static/css/main.25131c70.chunk.css",
+    "static/js/main.bc90178c.chunk.js"
+  ]
+}

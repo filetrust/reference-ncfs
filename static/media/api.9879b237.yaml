@@ -1,0 +1,63 @@
+openapi: 3.0.0
+info:
+  title: Glasswall Reference NCFS
+  description: These are HTTP endpoints that query the reference NCFS
+  version: 0.1.9
+servers:
+  - url: http://localhost:32792
+    description: Local Debug (HTTP)
+  - url: https://localhost:32793
+    description: Local Debug (HTTPS)
+paths:
+  /api/decide:
+    post:
+      summary: Decides the action to take for a non compliant file.
+      description: This endpoint accepts an input JSON body containing the base64 file and its filetype to decide the action for
+      requestBody:
+        content:
+          "application/json":
+            schema:
+              type: object
+              required:
+                - Base64Body
+              properties:
+                Base64Body:
+                  type: string
+                  description: Base 64 Encoded string representing the non compliant file
+                  example: SGVsbG8sIFdvcmxkIQ==
+                DetectedFiletype:
+                  type: string
+                  description: The detected file type of the non compliant file
+                  example: Docx
+      responses:
+        200:    # status code
+          description: OK - The NCFS action was decided
+          content:          
+            "application/json":
+              schema:
+                type: object
+                description: A response detailing each transaction file matched by the input filter
+                properties:
+                  Base64Replacement:
+                    type: string
+                    description: Base64 encoded string representing the file to replace the non compliant file with
+                    example: 1
+          headers:
+            "ncfs-decision":
+              description: The decision taken on the non-compliant file e.g "relay" | "replace" | "block"
+              schema:
+                type: string
+                example: Replace
+            "ncfs-replacement-mimetype":
+              description: "OPTIONAL: MIME type of the replacement content provided in the response body (only required if the MIME Type is being changed)"
+              schema:
+                type: string
+                example: application/json
+            "ncfs-status-message":
+              description: Explanatory message explaining decision
+              schema:
+                type: string
+        400:
+          description: This is usually when the JSON input is malformed or missing parameters
+        403:
+          description: This typically occurs when the API Token is not supplied, or it is incorrect
